@@ -26,6 +26,11 @@ public class OpportunityHandler {
                     }
                 }
                 }
+                /**************
+                 * Create a fields on Opportunity Client Contact, 
+                 * Once an Opportunity client Contact update 
+                 * then update Account client contact with same on Opportunity Client Contact
+				***************/
                 if(newOpportunity.get(opp.id).Client_contact__c != oldOpportunity.get(opp.id).Client_contact__c){
                     if(!queryAccount.Values().isEmpty() && queryAccount.Values().size() > 0){
                     for(Account acc : queryAccount.Values()){
