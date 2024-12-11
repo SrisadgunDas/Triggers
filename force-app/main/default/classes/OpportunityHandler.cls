@@ -5,16 +5,25 @@ public class OpportunityHandler {
     //added Account object ===> Picklist_Account__c
     public static void AfterUpdateOpportunity(Map<id,opportunity> newOpportunity,Map<id,opportunity> oldOpportunity){
         List<Account> accounts = new List<Account>();
+        Set<id> accountids =new Set<id>();
+        for(opportunity opps : newOpportunity.values()){
+                accountids.add(opps.AccountId);
+        }
         Map<id,Account> queryAccount = new Map<id,Account>([SELECT id,Picklist_Account__c 
                                                             FROM Account 
-                                                            WHERE (Picklist_Account__c= null or Picklist_Account__c != null) ]);
+                                                            WHERE (Picklist_Account__c= null or Picklist_Account__c != null) and id =: accountids ]);
         try{
             for(opportunity opp : newOpportunity.values()){
+                accountids.add(opp.AccountId);
                 if(newOpportunity.get(opp.id).Picklist_Opportunity__c != oldOpportunity.get(opp.id).Picklist_Opportunity__c){
                     system.debug('==> '+newOpportunity.get(opp.id).Picklist_Opportunity__c);
+                    if(!queryAccount.Values().isEmpty() && queryAccount.Values().size() > 0){
                     for(Account acc : queryAccount.Values()){
+                       system.debug('executing==> ');
                         acc.Picklist_Account__c = newOpportunity.get(opp.id).Picklist_Opportunity__c;
                         accounts.add(acc);
+                       
+                    }
                     }
                 }
                 Update accounts;

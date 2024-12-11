@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>OpportunityHandler</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
 		<members>AccountTrigger</members>
+		<members>opportunityTrigger</members>
 		<name>ApexTrigger</name>
+	</types>
+	<types>
+		<members>Triggers</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+		<members>Exception_Log__c.Stack_Trace__c</members>
+		<members>Exception_Log__c.message__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>Exception_Log__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Exception_Log__c</members>
+		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>Exception_Log__c.All</members>
+		<name>ListView</name>
 	</types>
 	<version>62.0</version>
 </Package>
