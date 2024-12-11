@@ -9,7 +9,7 @@ public class OpportunityHandler {
         for(opportunity opps : newOpportunity.values()){
                 accountids.add(opps.AccountId);
         }
-        Map<id,Account> queryAccount = new Map<id,Account>([SELECT id,Picklist_Account__c 
+        Map<id,Account> queryAccount = new Map<id,Account>([SELECT id,Picklist_Account__c,Client_contact__c 
                                                             FROM Account 
                                                             WHERE (Picklist_Account__c= null or Picklist_Account__c != null) and id =: accountids ]);
         try{
@@ -21,6 +21,16 @@ public class OpportunityHandler {
                     for(Account acc : queryAccount.Values()){
                        system.debug('executing==> ');
                         acc.Picklist_Account__c = newOpportunity.get(opp.id).Picklist_Opportunity__c;
+                        accounts.add(acc);
+                       
+                    }
+                }
+                }
+                if(newOpportunity.get(opp.id).Client_contact__c != oldOpportunity.get(opp.id).Client_contact__c){
+                    if(!queryAccount.Values().isEmpty() && queryAccount.Values().size() > 0){
+                    for(Account acc : queryAccount.Values()){
+                       system.debug('executing==> Client_contact__c');
+                        acc.Client_contact__c = newOpportunity.get(opp.id).Client_contact__c;
                         accounts.add(acc);
                        
                     }
@@ -38,4 +48,5 @@ public class OpportunityHandler {
         }
         
     }
+  
 }

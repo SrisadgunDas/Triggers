@@ -14,7 +14,10 @@
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>Account.Client_contact__c</members>
 		<members>Exception_Log__c.Stack_Trace__c</members>
+		<members>Exception_Log__c.message__c</members>
+		<members>Opportunity.Client_contact__c</members>
 		<members>Exception_Log__c.message__c</members>
 		<name>CustomField</name>
 	</types>
