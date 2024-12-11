@@ -58,6 +58,10 @@ public class OpportunityHandler {
                                            insert excp;
                                        }   
                                        }
+    /**************
+     * Collect All Line Item Quantities and 
+     * Populate the total on Account Level (Total Quantity)
+	**********************/
     public static List<Account> queryCollected(set<id> opportunityIds,List<Account> Accounts){
                                            List<Account> ListAccount =new List<Account>();
                                            decimal totalquanties = 0.0;
