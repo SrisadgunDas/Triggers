@@ -5,13 +5,16 @@ public class OpportunityLineItemHandler {
 		************************/
         List<Asset> listAsset = new List<Asset>();
         id opportunityId;
+        id opportunityLineitem;
          for(OpportunityLineItem item : newMapOpportunityLineItem.values()){
              opportunityId = item.OpportunityId;
+             opportunityLineitem = item.id;
          }
-        List<OpportunityLineItem> listItems = [Select id,Opportunity.AccountId from OpportunityLineItem where OpportunityId =:opportunityId  ] ;
+    Map<id,OpportunityLineItem> MapIdOppItem =new map<id,OpportunityLineItem>([Select id,Opportunity.AccountId from OpportunityLineItem where OpportunityId =:opportunityId]) ;
+       
         for(OpportunityLineItem item : newMapOpportunityLineItem.values()){
             Asset asse = new asset();
-            asse.AccountId = listItems[0].Opportunity.AccountId;
+          asse.AccountId = MapIdOppItem.get(opportunityLineitem).Opportunity.AccountId;
             asse.Name = 'Test asset ';
             listAsset.add(asse);
         }
